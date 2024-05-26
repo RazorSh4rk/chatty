@@ -6,7 +6,33 @@ on:
         - created
 
 jobs:
-  generate:
+  publish:
+    name: Publish for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            artifact_name: chatty-linux-amd64
+            asset_name: chatty-linux-amd64
+          - os: windows-latest
+            artifact_name: chatty-windows-amd64.exe
+            asset_name: chatty-windows-amd64
+          - os: macos-latest
+            artifact_name: chatty-darwin-amd64
+            asset_name: chatty-darwin-amd64
+          - os: ubuntu-latest-arm
+            artifact_name: chatty-linux-arm64
+            asset_name: chatty-linux-arm64
+          - os: windows-latest-arm
+            artifact_name: chatty-windows-arm64.exe
+            asset_name: chatty-windows-arm64
+          - os: macos-latest-arm
+            artifact_name: chatty-darwin-arm64
+            asset_name: chatty-darwin-arm64
+
+    steps:
+    - uses: actions/checkout@v3
     name: Generate cross-platform builds
     runs-on: ubuntu-latest
     steps:
@@ -20,3 +46,10 @@ jobs:
             name: 'chatty'
             compress: 'false'
             dest: 'dist'
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: dist/${{ matrix.artifact_name }}
+        asset_name: ${{ matrix.asset_name }}
+        tag: ${{ github.ref }}
