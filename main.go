@@ -4,9 +4,9 @@ import (
 	"os"
 	"slices"
 
-	"razorsh4rk.github.io/chatgpt-tui/ai"
-	"razorsh4rk.github.io/chatgpt-tui/cmd"
-	fshelper "razorsh4rk.github.io/chatgpt-tui/fs"
+	"razorsh4rk.github.io/chatty/ai"
+	"razorsh4rk.github.io/chatty/cmd"
+	fshelper "razorsh4rk.github.io/chatty/fs"
 )
 
 func main() {

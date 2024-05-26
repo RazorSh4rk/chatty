@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/urfave/cli/v2"
-	fshelper "razorsh4rk.github.io/chatgpt-tui/fs"
+	fshelper "razorsh4rk.github.io/chatty/fs"
 )
 
 var validVerbs = []string{

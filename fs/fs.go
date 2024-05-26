@@ -37,7 +37,7 @@ func encodeChatPretty(messages []openai.ChatCompletionMessage) (string, error) {
 	return string(res), err
 }
 
-func decodeChat(messages string) ([]openai.ChatCompletionMessage, error) {
+func DecodeChat(messages string) ([]openai.ChatCompletionMessage, error) {
 	var box []openai.ChatCompletionMessage
 	err := json.Unmarshal([]byte(messages), &box)
 	return box, err
@@ -76,7 +76,7 @@ func LoadChat(name string) ([]openai.ChatCompletionMessage, error) {
 	if err != nil {
 		return nil, err
 	}
-	return decodeChat(string(content))
+	return DecodeChat(string(content))
 }
 
 func PPChat(name string) {
@@ -131,6 +131,10 @@ func getConfigFolder() string {
 	path += "/.chatconfig"
 
 	return path
+}
+
+func GetConfigFolder() func() string {
+	return getConfigFolder
 }
 
 func SaveKey(key string) {

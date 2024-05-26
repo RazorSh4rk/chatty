@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"github.com/sashabaranov/go-openai"
-	"razorsh4rk.github.io/chatgpt-tui/ai"
-	fshelper "razorsh4rk.github.io/chatgpt-tui/fs"
+	"razorsh4rk.github.io/chatty/ai"
+	fshelper "razorsh4rk.github.io/chatty/fs"
 )
 
 func talk(message string) {
